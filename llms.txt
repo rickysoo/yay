@@ -1,0 +1,12 @@
+# You-AI-You
+
+> You-AI-You is a free AI skill by Ricky Soo for Claude, ChatGPT and Gemini. It makes the AI work in three steps: you give the facts first, the AI drafts using only your facts, and you check and approve last. Free to use and share with credit (CC BY 4.0).
+
+## Get it
+- [Download the skill (you-ai-you.zip)](https://rickysoo.github.io/you-ai-you/you-ai-you.zip): upload to Claude (Customize > Skills > + > Upload a skill), ChatGPT (Skills > Create > Upload from your computer) or Gemini (Skills > Create > Upload).
+- [Full instructions as plain text](https://rickysoo.github.io/you-ai-you/you-ai-you.txt): for AI tools without skills; paste into custom instructions or the start of a chat.
+
+## Pages
+- [Home page](https://rickysoo.github.io/you-ai-you/): introduction, download, install steps, example and FAQ.
+- [Source on GitHub](https://github.com/rickysoo/you-ai-you)
+- [About the author, Ricky Soo](https://rickysoo.com)
