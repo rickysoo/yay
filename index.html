@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>You-AI-You · Work with any AI and keep the result yours</title>
+<meta name="description" content="A free 3-step method for Claude, ChatGPT, Gemini and other AI assistants: you supply the facts, the AI drafts within them, you check and approve.">
+<meta property="og:title" content="You-AI-You">
+<meta property="og:description" content="A free 3-step method for working with any AI assistant so the result stays yours.">
+<style>
+  :root {
+    --ink: #1d2433;
+    --muted: #5b6475;
+    --bg: #fbf8f2;
+    --card: #ffffff;
+    --line: #e7e1d6;
+    --teal: #0f766e;
+    --teal-soft: #e3f3f1;
+    --coral: #e8664f;
+    --coral-soft: #fdebe7;
+    --amber: #c98a12;
+    --amber-soft: #fbf1dc;
+    --purple: #6d4fc2;
+    --purple-soft: #efeafb;
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    font-size: 17px;
+  }
+  a { color: var(--teal); }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 22px; }
+
+  /* Header */
+  header.top { padding: 18px 0; }
+  header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .brand { font-weight: 800; font-size: 20px; letter-spacing: -0.01em; color: var(--ink); text-decoration: none; }
+  .brand span { color: var(--teal); }
+  nav a { margin-left: 18px; text-decoration: none; color: var(--muted); font-size: 15px; }
+  nav a:hover { color: var(--ink); }
+
+  /* Hero */
+  .hero { padding: 56px 0 40px; text-align: center; }
+  .kicker {
+    display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--teal); background: var(--teal-soft); padding: 6px 12px; border-radius: 999px;
+  }
+  h1 { font-size: clamp(36px, 6vw, 60px); line-height: 1.08; margin: 18px 0 16px; letter-spacing: -0.02em; }
+  h1 .y { color: var(--teal); }
+  h1 .a { color: var(--coral); }
+  .lead { font-size: 20px; color: var(--muted); max-width: 680px; margin: 0 auto 28px; }
+  .cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 14px 22px; border-radius: 12px;
+    font-weight: 700; text-decoration: none; font-size: 16px; border: 2px solid transparent;
+    transition: transform .08s ease;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn.primary { background: var(--teal); color: #fff; }
+  .btn.primary:hover { background: #0b5f58; }
+  .btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+  .btn.ghost:hover { border-color: var(--ink); }
+  .free { margin-top: 14px; font-size: 14px; color: var(--muted); }
+
+  section { padding: 44px 0; }
+  h2 { font-size: clamp(26px, 3.6vw, 34px); margin: 0 0 8px; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); margin: 0 0 26px; }
+
+  /* Steps */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .step {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 24px; border-top: 6px solid var(--c);
+  }
+  .step .num {
+    width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--cs); color: var(--c); font-weight: 800; margin-bottom: 12px;
+  }
+  .step h3 { margin: 0 0 6px; font-size: 21px; }
+  .step p { margin: 0; color: var(--muted); font-size: 16px; }
+  .s1 { --c: var(--teal); --cs: var(--teal-soft); }
+  .s2 { --c: var(--coral); --cs: var(--coral-soft); }
+  .s3 { --c: var(--purple); --cs: var(--purple-soft); }
+
+  /* Promise */
+  .promise {
+    background: var(--ink); color: #fff; border-radius: var(--radius); padding: 30px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+  }
+  .promise div strong { display: block; font-size: 18px; margin-bottom: 4px; }
+  .promise div span { color: #c9cfdb; font-size: 15px; }
+
+  /* Download */
+  .downloads { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .dl {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px;
+    display: flex; flex-direction: column;
+  }
+  .dl .tag { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--c); }
+  .dl h3 { margin: 6px 0 6px; font-size: 22px; }
+  .dl p { color: var(--muted); margin: 0 0 18px; flex: 1; font-size: 16px; }
+  .dl .btn { align-self: flex-start; }
+  .dl.claude { --c: var(--coral); }
+  .dl.claude .btn { background: var(--coral); color: #fff; }
+  .dl.claude .btn:hover { background: #cf5440; }
+  .dl.other { --c: var(--teal); }
+  .note { font-size: 14px; color: var(--muted); margin-top: 14px; }
+
+  /* Install tabs */
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .tab {
+    border: 1px solid var(--line); background: var(--card); padding: 10px 18px; border-radius: 999px;
+    font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; color: var(--ink);
+  }
+  .tab[aria-selected="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .panel { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 28px; }
+  .panel[hidden] { display: none; }
+  .panel ol { margin: 0; padding-left: 22px; }
+  .panel li { margin-bottom: 8px; }
+  .panel .tip { margin-top: 14px; font-size: 15px; color: var(--muted); }
+  code, .k {
+    background: #f3efe7; border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .9em;
+  }
+  .copybox {
+    margin: 10px 0 4px; background: #f7f4ee; border: 1px dashed var(--line); border-radius: 10px;
+    padding: 12px 14px; font-size: 15px; display: flex; gap: 12px; align-items: flex-start; justify-content: space-between;
+  }
+  .copybox button {
+    flex: none; border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 6px 12px;
+    font: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
+  }
+
+  /* Examples */
+  .examples { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .ex {
+    background: var(--amber-soft); border-radius: var(--radius); padding: 18px 20px; font-size: 16px;
+    border-left: 5px solid var(--amber);
+  }
+  .tips { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 22px; }
+  .tips div { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; font-size: 15px; }
+  .tips strong { display: block; margin-bottom: 2px; }
+
+  footer { padding: 36px 0 48px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); margin-top: 20px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+  @media (max-width: 760px) {
+    .steps, .promise, .downloads, .examples, .tips { grid-template-columns: 1fr; }
+    nav { display: none; }
+    .hero { padding-top: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">You-<span>AI</span>-You</a>
+    <nav>
+      <a href="#how">How it works</a>
+      <a href="#download">Download</a>
+      <a href="#install">Install</a>
+      <a href="#use">Use</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <span class="kicker">Free · Works with Claude, ChatGPT, Gemini</span>
+    <h1>Work with AI.<br><span class="y">Keep the result</span> <span class="a">yours.</span></h1>
+    <p class="lead">You-AI-You is a simple set of instructions for your AI assistant. You bring the facts, the AI drafts within them, and you check and approve. No made-up details. No generic writing.</p>
+    <div class="cta">
+      <a class="btn primary" href="#download">Download it free</a>
+      <a class="btn ghost" href="#how">See how it works</a>
+    </div>
+    <p class="free">No sign-up. No GitHub account needed.</p>
+  </div>
+
+  <section id="how">
+    <div class="wrap">
+      <h2>Three steps. You at both ends.</h2>
+      <p class="sub">The AI works in the middle. You own the start and the finish.</p>
+      <div class="steps">
+        <div class="step s1">
+          <div class="num">1</div>
+          <h3>You first</h3>
+          <p>You share the facts, your goal, your audience and your limits. The AI asks questions before writing anything. Rough notes are fine.</p>
+        </div>
+        <div class="step s2">
+          <div class="num">2</div>
+          <h3>AI second</h3>
+          <p>The AI drafts using only what you gave it. It offers options, critiques its own draft and lists what you should check.</p>
+        </div>
+        <div class="step s3">
+          <div class="num">3</div>
+          <h3>You last</h3>
+          <p>You check every part. Is it true? Is it mine? Can I explain it? Nothing is final until you say so.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="promise">
+        <div><strong>No invented facts</strong><span>Missing details get a question or a [placeholder], never a guess.</span></div>
+        <div><strong>Sounds like you</strong><span>Plain words over buzzwords. Your own wording wins over the AI's.</span></div>
+        <div><strong>Works for anything</strong><span>Emails, resumes, reports, lessons, decisions, data, code and more.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="download">
+    <div class="wrap">
+      <h2>Download</h2>
+      <p class="sub">Pick the file for the AI tool you use.</p>
+      <div class="downloads">
+        <div class="dl claude">
+          <span class="tag">For Claude</span>
+          <h3>you-ai-you.zip</h3>
+          <p>A ready-to-upload skill package. Upload it to Claude as it is, without unzipping it.</p>
+          <a class="btn" href="you-ai-you.zip" download>Download for Claude</a>
+        </div>
+        <div class="dl other">
+          <span class="tag">For ChatGPT, Gemini and others</span>
+          <h3>you-ai-you.txt</h3>
+          <p>The full instructions as plain text. Paste them into your AI tool's instructions, or upload the file.</p>
+          <a class="btn primary" href="you-ai-you.txt" download>Download text file</a>
+        </div>
+      </div>
+      <p class="note">Files open in your browser instead? Right-click the button and choose <em>Save link as…</em>. You can also get everything from the <a href="https://github.com/rickysoo/you-ai-you">GitHub page</a> (green <strong>Code</strong> button → <strong>Download ZIP</strong>).</p>
+    </div>
+  </section>
+
+  <section id="install">
+    <div class="wrap">
+      <h2>Install in a few minutes</h2>
+      <p class="sub">Menu names change from time to time. If a button looks a little different, pick the closest match.</p>
+
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" aria-selected="true" aria-controls="p-claude" id="t-claude">Claude</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p-chatgpt" id="t-chatgpt">ChatGPT</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p-gemini" id="t-gemini">Gemini</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p-other" id="t-other">Other AI tools</button>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-claude" aria-labelledby="t-claude">
+        <ol>
+          <li>Go to <strong>Settings → Capabilities</strong> and turn on <strong>Code execution and file creation</strong> (sometimes called <strong>Create and edit files</strong>).</li>
+          <li>Go to <strong>Customize → Skills</strong>.</li>
+          <li>Click <strong>+</strong>, then <strong>Create skill</strong>, then <strong>Upload a skill</strong>.</li>
+          <li>Choose <code>you-ai-you.zip</code>.</li>
+          <li>Make sure <strong>you-ai-you</strong> is switched on in your skills list.</li>
+        </ol>
+        <p class="tip">On a Team or Enterprise plan, your organisation's owner may need to turn on skills first.</p>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-chatgpt" aria-labelledby="t-chatgpt" hidden>
+        <p><strong>Option A: a Project</strong> (simplest)</p>
+        <ol>
+          <li>In the sidebar, click <strong>New project</strong> and name it "You-AI-You".</li>
+          <li>Open the project's <strong>Instructions</strong> and paste this short line:
+            <div class="copybox"><span id="short1">Follow the You-AI-You method in the attached file you-ai-you.txt for every task in this project. Never skip a stage.</span><button data-copy="short1">Copy</button></div>
+          </li>
+          <li>Add <code>you-ai-you.txt</code> to the project's files.</li>
+          <li>Start new chats <strong>inside this project</strong>.</li>
+        </ol>
+        <p style="margin-top:18px"><strong>Option B: a custom GPT</strong> (paid plans)</p>
+        <ol>
+          <li>Go to <strong>GPTs → Create</strong>, then the <strong>Configure</strong> tab.</li>
+          <li>Name it "You-AI-You" and paste the short line above into <strong>Instructions</strong>.</li>
+          <li>Under <strong>Knowledge</strong>, upload <code>you-ai-you.txt</code>.</li>
+          <li>Click <strong>Create</strong>.</li>
+        </ol>
+        <p class="tip">The full text is slightly longer than ChatGPT's instruction box allows, so the short line points it to the uploaded file.</p>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-gemini" aria-labelledby="t-gemini" hidden>
+        <ol>
+          <li>Go to <a href="https://gemini.google.com">gemini.google.com</a> on a computer. Gems can only be created on the web.</li>
+          <li>Click <strong>Gem manager</strong> in the sidebar, then <strong>New Gem</strong>.</li>
+          <li>Name it "You-AI-You".</li>
+          <li>In <strong>Instructions</strong>, paste everything from <code>you-ai-you.txt</code>. If it doesn't all fit, paste the short line from the ChatGPT tab.</li>
+          <li>Under <strong>Knowledge</strong>, click <strong>Add files</strong> and upload <code>you-ai-you.txt</code>.</li>
+          <li>Click <strong>Save</strong>.</li>
+        </ol>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-other" aria-labelledby="t-other" hidden>
+        <ol>
+          <li><strong>If your tool has custom instructions, projects or assistants</strong> (Copilot, Perplexity, DeepSeek, Grok and others), paste the contents of <code>you-ai-you.txt</code> there, or upload the file.</li>
+          <li><strong>If it doesn't,</strong> paste the whole text at the start of a new chat, then add:
+            <div class="copybox"><span id="short2">Use this method for the following task: …</span><button data-copy="short2">Copy</button></div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="use">
+    <div class="wrap">
+      <h2>Start using it</h2>
+      <p class="sub">Just say what you want to make. The AI will ask you questions first.</p>
+      <div class="examples">
+        <div class="ex">"Let's use you-ai-you to write a cover letter for a marketing job."</div>
+        <div class="ex">"You-AI-You: help me reply to an unhappy customer."</div>
+        <div class="ex">"Use the You-AI-You method to plan a 1-hour lesson on budgeting."</div>
+      </div>
+      <div class="tips">
+        <div><strong>Be specific</strong>"I trained 40 staff in 3 sessions" beats "I helped with training".</div>
+        <div><strong>Push back</strong>If a line doesn't sound like you, say so, or rewrite it yourself.</div>
+        <div><strong>Expect questions</strong>Missing facts get asked about or left as a [placeholder].</div>
+        <div><strong>Get a second pair of eyes</strong>For money, legal, health or published work, have a person check too.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Ricky Soo · Shared under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Free to use and adapt with credit.</span>
+    <span><a href="https://github.com/rickysoo/you-ai-you">View on GitHub</a></span>
+  </div>
+</footer>
+
+<script>
+  // Tabs
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    tabs.forEach(t => {
+      t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+      document.getElementById(t.getAttribute('aria-controls')).hidden = t !== tab;
+    });
+  }));
+  // Copy buttons
+  document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('click', async () => {
+    const text = document.getElementById(btn.dataset.copy).textContent;
+    try { await navigator.clipboard.writeText(text); btn.textContent = 'Copied'; }
+    catch (e) { btn.textContent = 'Select & copy'; }
+    setTimeout(() => btn.textContent = 'Copy', 1800);
+  }));
+</script>
+</body>
+</html>
