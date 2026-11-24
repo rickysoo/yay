@@ -3,245 +3,287 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>You-AI-You · Work with any AI and keep the result yours</title>
+<title>You-AI-You | Work with any AI and keep the result yours · Ricky Soo</title>
 <meta name="description" content="A free 3-step method for Claude, ChatGPT, Gemini and other AI assistants: you supply the facts, the AI drafts within them, you check and approve.">
-<meta property="og:title" content="You-AI-You">
+<meta property="og:title" content="You-AI-You by Ricky Soo">
 <meta property="og:description" content="A free 3-step method for working with any AI assistant so the result stays yours.">
+<link rel="icon" href="https://rickysoo.com/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #1d2433;
-    --muted: #5b6475;
-    --bg: #fbf8f2;
-    --card: #ffffff;
-    --line: #e7e1d6;
-    --teal: #0f766e;
-    --teal-soft: #e3f3f1;
-    --coral: #e8664f;
-    --coral-soft: #fdebe7;
-    --amber: #c98a12;
-    --amber-soft: #fbf1dc;
-    --purple: #6d4fc2;
-    --purple-soft: #efeafb;
-    --radius: 16px;
+    --cream: #FAF9F5; --sand: #F0EEE6; --ink: #141413; --muted: #5E5D59; --line: #E3DED2;
+    --clay: #D97757; --clay-dark: #B85C3C; --clay-tint: #F7DCCF;
+    --blue: #6A9BCC; --blue-dark: #4A7BAA; --blue-tint: #DCE8F4;
+    --green: #788C5D; --green-dark: #5A6E42; --green-tint: #E2E8D8;
+    --gold: #F2C14E; --radius: 20px;
   }
-  * { box-sizing: border-box; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    color: var(--ink);
-    background: var(--bg);
-    line-height: 1.6;
-    font-size: 17px;
-  }
-  a { color: var(--teal); }
-  .wrap { max-width: 980px; margin: 0 auto; padding: 0 22px; }
+  body { font-family: Inter, system-ui, sans-serif; font-size: 17px; line-height: 1.6; color: var(--ink); background: var(--cream); }
+  h1, h2, h3, .btn, .brand, .pill, .eyebrow, .stat strong, .card-tag, .dl-tag, .tab { font-family: Nunito, system-ui, sans-serif; }
+  a { color: var(--clay-dark); font-weight: 600; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 22px; }
 
-  /* Header */
-  header.top { padding: 18px 0; }
-  header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-  .brand { font-weight: 800; font-size: 20px; letter-spacing: -0.01em; color: var(--ink); text-decoration: none; }
-  .brand span { color: var(--teal); }
-  nav a { margin-left: 18px; text-decoration: none; color: var(--muted); font-size: 15px; }
-  nav a:hover { color: var(--ink); }
+  /* Buttons (chunky, offset shadow) */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font-weight: 900; font-size: 15px; letter-spacing: .06em; text-transform: uppercase;
+    padding: 14px 24px; border-radius: 16px; border: 2px solid transparent; cursor: pointer; text-decoration: none;
+    color: #fff; background: var(--c, var(--clay)); box-shadow: 0 5px 0 var(--cd, var(--clay-dark));
+    transition: transform .08s, box-shadow .08s, filter .15s;
+  }
+  .btn:hover { filter: brightness(1.06); }
+  .btn:active { transform: translateY(5px); box-shadow: 0 0 0 var(--cd, var(--clay-dark)); }
+  .btn-clay { --c: var(--clay); --cd: var(--clay-dark); }
+  .btn-blue { --c: var(--blue); --cd: var(--blue-dark); }
+  .btn-green { --c: var(--green); --cd: var(--green-dark); }
+  .btn-white { --c: #fff; --cd: var(--line); color: var(--ink); border-color: var(--line); }
+  .btn-sm { padding: 9px 16px; font-size: 13px; box-shadow: 0 4px 0 var(--cd); }
+  .btn-sm:active { transform: translateY(4px); }
+
+  /* Nav */
+  .nav { position: sticky; top: 0; z-index: 50; background: rgba(250,249,245,.92); backdrop-filter: blur(8px); border-bottom: 2px solid var(--line); }
+  .nav-in { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 19px; color: var(--ink); text-decoration: none; }
+  .brand img { width: 40px; height: 40px; transition: transform .2s; }
+  .brand:hover img { transform: rotate(-8deg) scale(1.08); }
+  .nav-actions { display: flex; gap: 10px; align-items: center; }
+  @media (max-width: 520px) { .nav-actions .hide-sm { display: none; } }
 
   /* Hero */
-  .hero { padding: 56px 0 40px; text-align: center; }
-  .kicker {
-    display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--teal); background: var(--teal-soft); padding: 6px 12px; border-radius: 999px;
-  }
-  h1 { font-size: clamp(36px, 6vw, 60px); line-height: 1.08; margin: 18px 0 16px; letter-spacing: -0.02em; }
-  h1 .y { color: var(--teal); }
-  h1 .a { color: var(--coral); }
-  .lead { font-size: 20px; color: var(--muted); max-width: 680px; margin: 0 auto 28px; }
-  .cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px; padding: 14px 22px; border-radius: 12px;
-    font-weight: 700; text-decoration: none; font-size: 16px; border: 2px solid transparent;
-    transition: transform .08s ease;
-  }
-  .btn:active { transform: translateY(1px); }
-  .btn.primary { background: var(--teal); color: #fff; }
-  .btn.primary:hover { background: #0b5f58; }
-  .btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
-  .btn.ghost:hover { border-color: var(--ink); }
-  .free { margin-top: 14px; font-size: 14px; color: var(--muted); }
+  .hero { padding: 64px 0 72px; }
+  .hero-in { display: grid; gap: 48px; align-items: center; }
+  @media (min-width: 960px) { .hero-in { grid-template-columns: 1.15fr .85fr; } }
+  .pill { display: inline-block; background: #fff; border: 2px solid var(--line); border-radius: 999px; padding: 6px 16px; font-weight: 800; font-size: 15px; }
+  h1 { font-size: clamp(42px, 7vw, 64px); font-weight: 900; line-height: 1.12; margin: 20px 0 22px; letter-spacing: -.01em; }
+  .hl { display: inline-block; padding: 0 .18em; border-radius: 12px; }
+  .hl-clay { background: var(--clay-tint); color: var(--clay-dark); }
+  .hl-blue { background: var(--blue-tint); color: var(--blue-dark); }
+  .hl-green { background: var(--green-tint); color: var(--green-dark); }
+  .lead { font-size: 19px; color: var(--muted); max-width: 560px; }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+  .hero-note { margin-top: 18px; font-size: 15px; color: var(--muted); }
 
-  section { padding: 44px 0; }
-  h2 { font-size: clamp(26px, 3.6vw, 34px); margin: 0 0 8px; letter-spacing: -0.01em; }
-  .sub { color: var(--muted); margin: 0 0 26px; }
-
-  /* Steps */
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .step {
-    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 24px; border-top: 6px solid var(--c);
+  /* Hero visual: the three stages as a framed card */
+  .flow {
+    background: #fff; border: 4px solid var(--ink); border-radius: 36px; padding: 28px 26px;
+    box-shadow: 10px 10px 0 var(--clay); transform: rotate(1.5deg); display: grid; gap: 14px;
   }
-  .step .num {
-    width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center;
-    background: var(--cs); color: var(--c); font-weight: 800; margin-bottom: 12px;
+  .flow-row { display: flex; align-items: center; gap: 14px; background: var(--t); border-radius: 18px; padding: 14px 16px; }
+  .flow-row .n {
+    flex: none; width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center;
+    background: #fff; border: 3px solid var(--ink); font-family: Nunito, sans-serif; font-weight: 900; font-size: 20px; color: var(--d);
+    box-shadow: 0 3px 0 var(--ink);
   }
-  .step h3 { margin: 0 0 6px; font-size: 21px; }
-  .step p { margin: 0; color: var(--muted); font-size: 16px; }
-  .s1 { --c: var(--teal); --cs: var(--teal-soft); }
-  .s2 { --c: var(--coral); --cs: var(--coral-soft); }
-  .s3 { --c: var(--purple); --cs: var(--purple-soft); }
+  .flow-row strong { display: block; font-family: Nunito, sans-serif; font-weight: 900; font-size: 19px; color: var(--d); line-height: 1.2; }
+  .flow-row span { font-size: 15px; color: var(--muted); }
+  .f1 { --t: var(--clay-tint); --d: var(--clay-dark); }
+  .f2 { --t: var(--blue-tint); --d: var(--blue-dark); }
+  .f3 { --t: var(--green-tint); --d: var(--green-dark); }
+  .flow-arrow { text-align: center; font-weight: 900; color: var(--line); font-size: 18px; line-height: .6; }
 
-  /* Promise */
-  .promise {
-    background: var(--ink); color: #fff; border-radius: var(--radius); padding: 30px;
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+  /* Dark band */
+  .band { background: var(--ink); color: #fff; padding: 36px 0; }
+  .stats { display: grid; gap: 26px; text-align: center; }
+  @media (min-width: 760px) { .stats { grid-template-columns: repeat(3, 1fr); } }
+  .stat strong { display: block; font-size: 26px; font-weight: 900; color: var(--sc); line-height: 1.2; margin-bottom: 4px; }
+  .stat span { font-size: 15px; color: #CFCCC2; }
+  .stat-a { --sc: #F0A385; } .stat-b { --sc: #9DC0E3; } .stat-c { --sc: #B5C795; }
+
+  /* Sections */
+  .section { padding: 72px 0; }
+  .section-sand { background: var(--sand); }
+  .eyebrow { text-transform: uppercase; font-weight: 900; letter-spacing: .12em; font-size: 14px; color: var(--clay); margin-bottom: 8px; }
+  h2 { font-size: clamp(30px, 5vw, 42px); font-weight: 900; line-height: 1.15; }
+  .sub { color: var(--muted); font-size: 18px; margin-top: 10px; max-width: 640px; }
+
+  /* Cards */
+  .cards { display: grid; gap: 24px; margin-top: 40px; }
+  @media (min-width: 900px) { .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .card {
+    background: #fff; border: 2px solid var(--line); border-bottom-width: 7px; border-radius: 28px;
+    padding: 26px 24px 22px; display: flex; flex-direction: column; gap: 12px; transition: transform .15s, border-color .15s;
   }
-  .promise div strong { display: block; font-size: 18px; margin-bottom: 4px; }
-  .promise div span { color: #c9cfdb; font-size: 15px; }
+  .card:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .card-a { --accent: var(--clay); --tint: var(--clay-tint); }
+  .card-b { --accent: var(--blue); --tint: var(--blue-tint); }
+  .card-c { --accent: var(--green); --tint: var(--green-tint); }
+  .card-tag { align-self: flex-start; background: var(--tint); font-weight: 800; font-size: 14px; padding: 5px 12px; border-radius: 999px; }
+  .card h3 { font-size: 23px; font-weight: 900; line-height: 1.2; }
+  .card p { color: var(--muted); }
+  .card ul { list-style: none; display: grid; gap: 8px; }
+  .card li { position: relative; padding-left: 30px; font-weight: 500; font-size: 16px; }
+  .card li::before {
+    content: "✓"; position: absolute; left: 0; top: 1px; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--tint); color: var(--accent); font-weight: 900; font-size: 13px; display: grid; place-items: center;
+  }
 
-  /* Download */
-  .downloads { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  /* Downloads */
+  .downloads { display: grid; gap: 24px; margin-top: 40px; }
+  @media (min-width: 820px) { .downloads { grid-template-columns: 1fr 1fr; } }
   .dl {
-    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px;
-    display: flex; flex-direction: column;
+    background: #fff; border: 2px solid var(--line); border-bottom-width: 7px; border-radius: 28px; padding: 28px 26px;
+    display: flex; flex-direction: column; gap: 10px;
   }
-  .dl .tag { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--c); }
-  .dl h3 { margin: 6px 0 6px; font-size: 22px; }
-  .dl p { color: var(--muted); margin: 0 0 18px; flex: 1; font-size: 16px; }
+  .dl-tag { align-self: flex-start; background: var(--tint); font-weight: 800; font-size: 14px; padding: 5px 12px; border-radius: 999px; }
+  .dl h3 { font-size: 26px; font-weight: 900; }
+  .dl h3 code { font-family: inherit; background: none; border: 0; padding: 0; font-size: inherit; }
+  .dl p { color: var(--muted); flex: 1; margin-bottom: 8px; }
   .dl .btn { align-self: flex-start; }
-  .dl.claude { --c: var(--coral); }
-  .dl.claude .btn { background: var(--coral); color: #fff; }
-  .dl.claude .btn:hover { background: #cf5440; }
-  .dl.other { --c: var(--teal); }
-  .note { font-size: 14px; color: var(--muted); margin-top: 14px; }
+  .dl-a { --tint: var(--clay-tint); }
+  .dl-b { --tint: var(--blue-tint); }
+  .note { margin-top: 22px; font-size: 15px; color: var(--muted); }
 
   /* Install tabs */
-  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .tabs { display: flex; gap: 10px; flex-wrap: wrap; margin: 36px 0 18px; }
   .tab {
-    border: 1px solid var(--line); background: var(--card); padding: 10px 18px; border-radius: 999px;
-    font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; color: var(--ink);
+    border: 2px solid var(--line); background: #fff; padding: 9px 18px; border-radius: 999px;
+    font-size: 16px; font-weight: 900; cursor: pointer; color: var(--ink); box-shadow: 0 4px 0 var(--line);
+    transition: transform .08s, box-shadow .08s;
   }
-  .tab[aria-selected="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
-  .panel { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 28px; }
+  .tab:active { transform: translateY(4px); box-shadow: none; }
+  .tab[aria-selected="true"] { background: var(--ink); color: #fff; border-color: var(--ink); box-shadow: 0 4px 0 var(--clay); }
+  .panel { background: #fff; border: 2px solid var(--line); border-bottom-width: 7px; border-radius: 28px; padding: 28px 30px; }
   .panel[hidden] { display: none; }
-  .panel ol { margin: 0; padding-left: 22px; }
-  .panel li { margin-bottom: 8px; }
-  .panel .tip { margin-top: 14px; font-size: 15px; color: var(--muted); }
-  code, .k {
-    background: #f3efe7; border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .9em;
+  .panel h3 { font-size: 20px; font-weight: 900; margin: 4px 0 12px; }
+  .panel h3 + ol { margin-bottom: 6px; }
+  .panel ol { padding-left: 0; list-style: none; counter-reset: s; display: grid; gap: 12px; }
+  .panel ol + h3 { margin-top: 26px; }
+  .panel li { counter-increment: s; position: relative; padding-left: 44px; }
+  .panel li::before {
+    content: counter(s); position: absolute; left: 0; top: -2px; width: 30px; height: 30px; border-radius: 10px;
+    display: grid; place-items: center; background: var(--clay-tint); color: var(--clay-dark);
+    font-family: Nunito, sans-serif; font-weight: 900; font-size: 15px;
   }
+  .panel .tip { margin-top: 18px; padding-top: 16px; border-top: 2px dashed var(--line); font-size: 15px; color: var(--muted); }
+  code { background: var(--sand); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .88em; }
   .copybox {
-    margin: 10px 0 4px; background: #f7f4ee; border: 1px dashed var(--line); border-radius: 10px;
-    padding: 12px 14px; font-size: 15px; display: flex; gap: 12px; align-items: flex-start; justify-content: space-between;
-  }
-  .copybox button {
-    flex: none; border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 6px 12px;
-    font: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
+    margin-top: 10px; background: var(--cream); border: 2px dashed var(--line); border-radius: 14px; padding: 12px 14px;
+    font-size: 15px; display: flex; gap: 12px; align-items: center; justify-content: space-between;
   }
 
   /* Examples */
-  .examples { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .examples { display: grid; gap: 18px; margin-top: 36px; }
+  @media (min-width: 900px) { .examples { grid-template-columns: repeat(3, 1fr); } }
   .ex {
-    background: var(--amber-soft); border-radius: var(--radius); padding: 18px 20px; font-size: 16px;
-    border-left: 5px solid var(--amber);
+    position: relative; background: #fff; border: 3px solid var(--ink); border-radius: 20px; padding: 18px 20px;
+    font-weight: 600; box-shadow: 0 5px 0 var(--ink);
   }
-  .tips { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 22px; }
-  .tips div { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; font-size: 15px; }
-  .tips strong { display: block; margin-bottom: 2px; }
+  .tips { display: grid; gap: 14px; margin-top: 34px; }
+  @media (min-width: 760px) { .tips { grid-template-columns: 1fr 1fr; } }
+  .tip-row { display: flex; gap: 14px; align-items: flex-start; background: #fff; border: 2px solid var(--line); border-bottom-width: 6px; border-radius: 20px; padding: 14px 18px; }
+  .tip-ico { flex: none; width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; font-size: 22px; background: var(--bt); }
+  .tip-row strong { display: block; font-family: Nunito, sans-serif; font-weight: 900; font-size: 17px; }
+  .tip-row span { font-size: 15px; color: var(--muted); }
 
-  footer { padding: 36px 0 48px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); margin-top: 20px; }
-  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-
-  @media (max-width: 760px) {
-    .steps, .promise, .downloads, .examples, .tips { grid-template-columns: 1fr; }
-    nav { display: none; }
-    .hero { padding-top: 32px; }
-  }
+  /* Footer */
+  .footer { background: var(--ink); color: #CFCCC2; padding: 44px 0; font-size: 15px; }
+  .footer-in { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; align-items: center; }
+  .footer a { color: #F0A385; }
+  .footer .brand { color: #fff; }
 </style>
 </head>
 <body>
 
-<header class="top">
-  <div class="wrap">
-    <a class="brand" href="#">You-<span>AI</span>-You</a>
-    <nav>
-      <a href="#how">How it works</a>
-      <a href="#download">Download</a>
-      <a href="#install">Install</a>
-      <a href="#use">Use</a>
-    </nav>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="https://rickysoo.com"><img src="https://rickysoo.com/logo.webp" alt="" width="40" height="40">Ricky Soo</a>
+    <div class="nav-actions">
+      <a class="btn btn-white btn-sm hide-sm" href="#install">How to install</a>
+      <a class="btn btn-clay btn-sm" href="#download">Download</a>
+    </div>
   </div>
 </header>
 
 <main>
-  <div class="wrap hero">
-    <span class="kicker">Free · Works with Claude, ChatGPT, Gemini</span>
-    <h1>Work with AI.<br><span class="y">Keep the result</span> <span class="a">yours.</span></h1>
-    <p class="lead">You-AI-You is a simple set of instructions for your AI assistant. You bring the facts, the AI drafts within them, and you check and approve. No made-up details. No generic writing.</p>
-    <div class="cta">
-      <a class="btn primary" href="#download">Download it free</a>
-      <a class="btn ghost" href="#how">See how it works</a>
-    </div>
-    <p class="free">No sign-up. No GitHub account needed.</p>
-  </div>
+  <section class="hero">
+    <div class="wrap hero-in">
+      <div>
+        <span class="pill">🧩 Free method · Claude, ChatGPT, Gemini</span>
+        <h1><span class="hl hl-clay">You</span> first.<br><span class="hl hl-blue">AI</span> second.<br><span class="hl hl-green">You</span> last.</h1>
+        <p class="lead">You-AI-You is a simple set of instructions for your AI assistant. You bring the facts, the AI drafts within them, and you check and approve. So the result is still yours.</p>
+        <div class="hero-cta">
+          <a class="btn btn-clay" href="#download">Download free</a>
+          <a class="btn btn-white" href="#how">How it works</a>
+        </div>
+        <p class="hero-note">No sign-up. No GitHub account needed.</p>
+      </div>
 
-  <section id="how">
+      <div class="flow" aria-hidden="true">
+        <div class="flow-row f1"><div class="n">1</div><div><strong>You first</strong><span>Facts, goal, audience, limits</span></div></div>
+        <div class="flow-arrow">▼</div>
+        <div class="flow-row f2"><div class="n">2</div><div><strong>AI second</strong><span>Drafts only from what you gave</span></div></div>
+        <div class="flow-arrow">▼</div>
+        <div class="flow-row f3"><div class="n">3</div><div><strong>You last</strong><span>Check, edit, approve</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap stats">
+      <div class="stat stat-a"><strong>No invented facts</strong><span>Missing details get a question or a [placeholder], never a guess</span></div>
+      <div class="stat stat-b"><strong>Sounds like you</strong><span>Plain words over buzzwords. Your wording wins.</span></div>
+      <div class="stat stat-c"><strong>Works for anything</strong><span>Emails, resumes, reports, lessons, decisions, code</span></div>
+    </div>
+  </section>
+
+  <section class="section section-sand" id="how">
     <div class="wrap">
+      <p class="eyebrow">How it works</p>
       <h2>Three steps. You at both ends.</h2>
       <p class="sub">The AI works in the middle. You own the start and the finish.</p>
-      <div class="steps">
-        <div class="step s1">
-          <div class="num">1</div>
-          <h3>You first</h3>
-          <p>You share the facts, your goal, your audience and your limits. The AI asks questions before writing anything. Rough notes are fine.</p>
+      <div class="cards">
+        <div class="card card-a">
+          <span class="card-tag">Step 1 · You first</span>
+          <h3>Bring what only you know</h3>
+          <p>The AI asks before it writes anything. Rough notes are fine.</p>
+          <ul><li>The real facts and numbers</li><li>Your goal and audience</li><li>What must not be included</li></ul>
         </div>
-        <div class="step s2">
-          <div class="num">2</div>
-          <h3>AI second</h3>
-          <p>The AI drafts using only what you gave it. It offers options, critiques its own draft and lists what you should check.</p>
+        <div class="card card-b">
+          <span class="card-tag">Step 2 · AI second</span>
+          <h3>Get a draft built from your material</h3>
+          <p>Speed, structure and options, within the limits you set.</p>
+          <ul><li>Uses only your facts</li><li>Offers choices, not one answer</li><li>Lists what you should check</li></ul>
         </div>
-        <div class="step s3">
-          <div class="num">3</div>
-          <h3>You last</h3>
-          <p>You check every part. Is it true? Is it mine? Can I explain it? Nothing is final until you say so.</p>
+        <div class="card card-c">
+          <span class="card-tag">Step 3 · You last</span>
+          <h3>Check it, own it, approve it</h3>
+          <p>Nothing is final until you say so.</p>
+          <ul><li>Is it true?</li><li>Is it mine?</li><li>Can I explain it?</li></ul>
         </div>
       </div>
     </div>
   </section>
 
-  <section>
+  <section class="section" id="download">
     <div class="wrap">
-      <div class="promise">
-        <div><strong>No invented facts</strong><span>Missing details get a question or a [placeholder], never a guess.</span></div>
-        <div><strong>Sounds like you</strong><span>Plain words over buzzwords. Your own wording wins over the AI's.</span></div>
-        <div><strong>Works for anything</strong><span>Emails, resumes, reports, lessons, decisions, data, code and more.</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="download">
-    <div class="wrap">
-      <h2>Download</h2>
-      <p class="sub">Pick the file for the AI tool you use.</p>
+      <p class="eyebrow">Download</p>
+      <h2>Pick the file for your AI tool</h2>
+      <p class="sub">Both files contain the same method. Only the format differs.</p>
       <div class="downloads">
-        <div class="dl claude">
-          <span class="tag">For Claude</span>
-          <h3>you-ai-you.zip</h3>
+        <div class="dl dl-a">
+          <span class="dl-tag">For Claude</span>
+          <h3><code>you-ai-you.zip</code></h3>
           <p>A ready-to-upload skill package. Upload it to Claude as it is, without unzipping it.</p>
-          <a class="btn" href="you-ai-you.zip" download>Download for Claude</a>
+          <a class="btn btn-clay" href="you-ai-you.zip" download>Download for Claude</a>
         </div>
-        <div class="dl other">
-          <span class="tag">For ChatGPT, Gemini and others</span>
-          <h3>you-ai-you.txt</h3>
+        <div class="dl dl-b">
+          <span class="dl-tag">For ChatGPT, Gemini and others</span>
+          <h3><code>you-ai-you.txt</code></h3>
           <p>The full instructions as plain text. Paste them into your AI tool's instructions, or upload the file.</p>
-          <a class="btn primary" href="you-ai-you.txt" download>Download text file</a>
+          <a class="btn btn-blue" href="you-ai-you.txt" download>Download text file</a>
         </div>
       </div>
-      <p class="note">Files open in your browser instead? Right-click the button and choose <em>Save link as…</em>. You can also get everything from the <a href="https://github.com/rickysoo/you-ai-you">GitHub page</a> (green <strong>Code</strong> button → <strong>Download ZIP</strong>).</p>
+      <p class="note">If a file opens in your browser instead, right-click the button and choose <em>Save link as…</em>. Everything is also on <a href="https://github.com/rickysoo/you-ai-you">GitHub</a> (green <strong>Code</strong> button → <strong>Download ZIP</strong>).</p>
     </div>
   </section>
 
-  <section id="install">
+  <section class="section section-sand" id="install">
     <div class="wrap">
-      <h2>Install in a few minutes</h2>
+      <p class="eyebrow">Install</p>
+      <h2>Set it up in a few minutes</h2>
       <p class="sub">Menu names change from time to time. If a button looks a little different, pick the closest match.</p>
 
       <div class="tabs" role="tablist">
@@ -263,16 +305,16 @@
       </div>
 
       <div class="panel" role="tabpanel" id="p-chatgpt" aria-labelledby="t-chatgpt" hidden>
-        <p><strong>Option A: a Project</strong> (simplest)</p>
+        <h3>Option A: a Project (simplest)</h3>
         <ol>
           <li>In the sidebar, click <strong>New project</strong> and name it "You-AI-You".</li>
           <li>Open the project's <strong>Instructions</strong> and paste this short line:
-            <div class="copybox"><span id="short1">Follow the You-AI-You method in the attached file you-ai-you.txt for every task in this project. Never skip a stage.</span><button data-copy="short1">Copy</button></div>
+            <div class="copybox"><span id="short1">Follow the You-AI-You method in the attached file you-ai-you.txt for every task in this project. Never skip a stage.</span><button class="btn btn-white btn-sm" data-copy="short1">Copy</button></div>
           </li>
           <li>Add <code>you-ai-you.txt</code> to the project's files.</li>
           <li>Start new chats <strong>inside this project</strong>.</li>
         </ol>
-        <p style="margin-top:18px"><strong>Option B: a custom GPT</strong> (paid plans)</p>
+        <h3>Option B: a custom GPT (paid plans)</h3>
         <ol>
           <li>Go to <strong>GPTs → Create</strong>, then the <strong>Configure</strong> tab.</li>
           <li>Name it "You-AI-You" and paste the short line above into <strong>Instructions</strong>.</li>
@@ -297,41 +339,42 @@
         <ol>
           <li><strong>If your tool has custom instructions, projects or assistants</strong> (Copilot, Perplexity, DeepSeek, Grok and others), paste the contents of <code>you-ai-you.txt</code> there, or upload the file.</li>
           <li><strong>If it doesn't,</strong> paste the whole text at the start of a new chat, then add:
-            <div class="copybox"><span id="short2">Use this method for the following task: …</span><button data-copy="short2">Copy</button></div>
+            <div class="copybox"><span id="short2">Use this method for the following task: …</span><button class="btn btn-white btn-sm" data-copy="short2">Copy</button></div>
           </li>
         </ol>
       </div>
     </div>
   </section>
 
-  <section id="use">
+  <section class="section" id="use">
     <div class="wrap">
-      <h2>Start using it</h2>
-      <p class="sub">Just say what you want to make. The AI will ask you questions first.</p>
+      <p class="eyebrow">Use it</p>
+      <h2>Just say what you want to make</h2>
+      <p class="sub">The AI will ask you questions first, then draft, then walk you through checking it.</p>
       <div class="examples">
-        <div class="ex">"Let's use you-ai-you to write a cover letter for a marketing job."</div>
-        <div class="ex">"You-AI-You: help me reply to an unhappy customer."</div>
-        <div class="ex">"Use the You-AI-You method to plan a 1-hour lesson on budgeting."</div>
+        <div class="ex">💬 "Let's use you-ai-you to write a cover letter for a marketing job."</div>
+        <div class="ex">💬 "You-AI-You: help me reply to an unhappy customer."</div>
+        <div class="ex">💬 "Use the You-AI-You method to plan a 1-hour lesson on budgeting."</div>
       </div>
       <div class="tips">
-        <div><strong>Be specific</strong>"I trained 40 staff in 3 sessions" beats "I helped with training".</div>
-        <div><strong>Push back</strong>If a line doesn't sound like you, say so, or rewrite it yourself.</div>
-        <div><strong>Expect questions</strong>Missing facts get asked about or left as a [placeholder].</div>
-        <div><strong>Get a second pair of eyes</strong>For money, legal, health or published work, have a person check too.</div>
+        <div class="tip-row"><div class="tip-ico" style="--bt: var(--clay-tint)">🎯</div><div><strong>Be specific</strong><span>"I trained 40 staff in 3 sessions" beats "I helped with training".</span></div></div>
+        <div class="tip-row"><div class="tip-ico" style="--bt: var(--blue-tint)">✍️</div><div><strong>Push back</strong><span>If a line doesn't sound like you, say so, or rewrite it yourself.</span></div></div>
+        <div class="tip-row"><div class="tip-ico" style="--bt: var(--green-tint)">❓</div><div><strong>Expect questions</strong><span>Missing facts get asked about or left as a [placeholder].</span></div></div>
+        <div class="tip-row"><div class="tip-ico" style="--bt: #FCEFC9">👀</div><div><strong>Get a second pair of eyes</strong><span>For money, legal, health or published work, have a person check too.</span></div></div>
       </div>
     </div>
   </section>
 </main>
 
-<footer>
-  <div class="wrap">
+<footer class="footer">
+  <div class="wrap footer-in">
+    <a class="brand" href="https://rickysoo.com"><img src="https://rickysoo.com/logo.webp" alt="" width="36" height="36">Ricky Soo</a>
     <span>© 2026 Ricky Soo · Shared under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Free to use and adapt with credit.</span>
-    <span><a href="https://github.com/rickysoo/you-ai-you">View on GitHub</a></span>
+    <a href="https://github.com/rickysoo/you-ai-you">View on GitHub</a>
   </div>
 </footer>
 
 <script>
-  // Tabs
   const tabs = document.querySelectorAll('.tab');
   tabs.forEach(tab => tab.addEventListener('click', () => {
     tabs.forEach(t => {
@@ -339,7 +382,6 @@
       document.getElementById(t.getAttribute('aria-controls')).hidden = t !== tab;
     });
   }));
-  // Copy buttons
   document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('click', async () => {
     const text = document.getElementById(btn.dataset.copy).textContent;
     try { await navigator.clipboard.writeText(text); btn.textContent = 'Copied'; }
