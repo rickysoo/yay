@@ -123,6 +123,7 @@
   /* Downloads */
   .downloads { display: grid; gap: 24px; margin-top: 40px; }
   @media (min-width: 820px) { .downloads { grid-template-columns: 1fr 1fr; } }
+  .downloads.one { max-width: 560px; grid-template-columns: 1fr; }
   .dl {
     background: #fff; border: 2px solid var(--line); border-bottom-width: 7px; border-radius: 28px; padding: 28px 26px;
     display: flex; flex-direction: column; gap: 10px;
@@ -190,7 +191,10 @@
 <header class="nav">
   <div class="wrap nav-in">
     <a class="brand" href="https://rickysoo.com"><img src="https://rickysoo.com/logo.webp" alt="" width="40" height="40">Ricky Soo</a>
-    <a class="btn btn-clay btn-sm" href="#download">Download</a>
+    <div class="nav-actions">
+      <a class="btn btn-white btn-sm" href="https://rickysoo.com">RickySoo.com</a>
+      <a class="btn btn-clay btn-sm" href="#download">Get it</a>
+    </div>
   </div>
 </header>
 
@@ -201,7 +205,7 @@
         <span class="pill">Free · For Claude, ChatGPT, Gemini</span>
         <h1><span class="hl hl-clay">You</span> first.<br><span class="hl hl-blue">AI</span> second.<br><span class="hl hl-green">You</span> last.</h1>
         <p class="lead">Simple instructions that make your AI work with you, not for you. The result stays true, and stays yours.</p>
-        <div class="hero-cta"><a class="btn btn-clay" href="#download">Download free</a></div>
+        <div class="hero-cta"><a class="btn btn-clay" href="#download">Get it free</a></div>
       </div>
 
       <div class="flow">
@@ -218,18 +222,12 @@
     <div class="wrap">
       <p class="eyebrow">Step 1</p>
       <h2>Download</h2>
-      <div class="downloads">
+      <div class="downloads one">
         <div class="dl dl-a">
-          <span class="dl-tag">Claude</span>
-          <h3><code>you-ai-you.zip</code></h3>
-          <p>Don't unzip it.</p>
+          <span class="dl-tag">Claude · ChatGPT · Gemini</span>
+          <h3>Download the skill</h3>
+          <p>Saves <code>you-ai-you.zip</code>. Don't unzip it.</p>
           <a class="btn btn-clay" href="you-ai-you.zip" download>Download</a>
-        </div>
-        <div class="dl dl-b">
-          <span class="dl-tag">ChatGPT, Gemini and others</span>
-          <h3><code>you-ai-you.txt</code></h3>
-          <p>A plain text file.</p>
-          <a class="btn btn-blue" href="you-ai-you.txt" download>Download</a>
         </div>
       </div>
     </div>
@@ -257,30 +255,26 @@
 
       <div class="panel" role="tabpanel" id="p-chatgpt" aria-labelledby="t-chatgpt" hidden>
         <ol>
-          <li>Click <strong>New project</strong>.</li>
-          <li>In the project's <strong>Instructions</strong>, paste:
-            <div class="copybox"><span id="short1">Follow the You-AI-You method in the file you-ai-you.txt for every task.</span><button class="btn btn-white btn-sm" data-copy="short1">Copy</button></div>
-          </li>
-          <li>Add <code>you-ai-you.txt</code> to the project's files.</li>
-          <li>Chat inside this project.</li>
+          <li>Open <strong>Skills</strong>.</li>
+          <li>Click <strong>Create</strong>, then <strong>Upload from your computer</strong>.</li>
+          <li>Choose <code>you-ai-you.zip</code>.</li>
         </ol>
       </div>
 
       <div class="panel" role="tabpanel" id="p-gemini" aria-labelledby="t-gemini" hidden>
         <ol>
-          <li>On a computer, open <a href="https://gemini.google.com">gemini.google.com</a>. Click <strong>Gem manager → New Gem</strong>.</li>
-          <li>In <strong>Instructions</strong>, paste:
-            <div class="copybox"><span id="short2">Follow the You-AI-You method in the file you-ai-you.txt for every task.</span><button class="btn btn-white btn-sm" data-copy="short2">Copy</button></div>
-          </li>
-          <li>Under <strong>Knowledge</strong>, add <code>you-ai-you.txt</code>.</li>
-          <li>Click <strong>Save</strong>. Chat with this Gem.</li>
+          <li>Go to <a href="https://gemini.google.com">gemini.google.com</a> and open <strong>Skills</strong>.</li>
+          <li>Click <strong>Create</strong>, then <strong>Upload</strong>.</li>
+          <li>Choose <code>you-ai-you.zip</code>.</li>
         </ol>
       </div>
 
       <div class="panel" role="tabpanel" id="p-other" aria-labelledby="t-other" hidden>
         <ol>
-          <li>Open <code>you-ai-you.txt</code> and copy everything.</li>
-          <li>Paste it into your AI's custom instructions, or at the start of a new chat.</li>
+          <li>If your AI has <strong>Skills</strong>, upload <code>you-ai-you.zip</code> there.</li>
+          <li>If not, copy the instructions and paste them at the start of a chat.
+            <div class="copybox"><span>The full You-AI-You instructions</span><button class="btn btn-white btn-sm" id="copy-all">Copy</button></div>
+          </li>
         </ol>
       </div>
     </div>
@@ -305,7 +299,7 @@
   <div class="wrap footer-in">
     <a class="brand" href="https://rickysoo.com"><img src="https://rickysoo.com/logo.webp" alt="" width="36" height="36">Ricky Soo</a>
     <span>© 2026 Ricky Soo · Free to use and share with credit (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>)</span>
-    <a href="https://github.com/rickysoo/you-ai-you">GitHub</a>
+    <span><a href="https://rickysoo.com">RickySoo.com</a> · <a href="https://github.com/rickysoo/you-ai-you">GitHub</a></span>
   </div>
 </footer>
 
@@ -317,12 +311,17 @@
       document.getElementById(t.getAttribute('aria-controls')).hidden = t !== tab;
     });
   }));
-  document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('click', async () => {
-    const text = document.getElementById(btn.dataset.copy).textContent;
-    try { await navigator.clipboard.writeText(text); btn.textContent = 'Copied'; }
-    catch (e) { btn.textContent = 'Select & copy'; }
-    setTimeout(() => btn.textContent = 'Copy', 1800);
-  }));
+  const copyAll = document.getElementById('copy-all');
+  copyAll.addEventListener('click', async () => {
+    try {
+      const text = await (await fetch('you-ai-you.txt')).text();
+      await navigator.clipboard.writeText(text);
+      copyAll.textContent = 'Copied ✓';
+      setTimeout(() => copyAll.textContent = 'Copy', 2000);
+    } catch (e) {
+      window.open('you-ai-you.txt', '_blank');
+    }
+  });
 </script>
 </body>
 </html>
