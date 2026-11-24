@@ -192,6 +192,17 @@
   .footer-in { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; align-items: center; }
   .footer a { color: #F0A385; }
   .footer .brand { color: #fff; }
+  /* Example chat */
+  .chat { max-width: 720px; margin-top: 32px; display: flex; flex-direction: column; gap: 12px; }
+  .stage { align-self: flex-start; font-family: Nunito, sans-serif; font-weight: 900; font-size: 14px; padding: 5px 12px; border-radius: 999px; margin-top: 10px; }
+  .stage.s1 { background: var(--clay-tint); color: var(--clay-dark); }
+  .stage.s2 { background: var(--blue-tint); color: var(--blue-dark); }
+  .stage.s3 { background: var(--green-tint); color: var(--green-dark); }
+  .msg { max-width: 85%; padding: 12px 16px; border-radius: 18px; font-size: 16px; }
+  .msg.me { align-self: flex-end; background: var(--ink); color: #fff; border-bottom-right-radius: 6px; }
+  .msg.ai { align-self: flex-start; background: #fff; border: 2px solid var(--line); border-bottom-width: 5px; border-bottom-left-radius: 6px; }
+  .draft { margin: 10px 0; padding: 12px 14px; background: var(--cream); border-left: 4px solid var(--blue); border-radius: 8px; }
+  mark { background: var(--gold); border-radius: 4px; padding: 0 3px; }
 </style>
 </head>
 <body>
@@ -292,13 +303,22 @@
     <div class="wrap">
       <p class="eyebrow">Step 3</p>
       <h2>Use it</h2>
-      <p class="sub">Tell your AI what you want to make. For example:</p>
-      <div class="examples">
-        <div class="ex">"Use You-AI-You to write a cover letter."</div>
-        <div class="ex">"Use You-AI-You to reply to a customer."</div>
-        <div class="ex">"Use You-AI-You to plan a lesson."</div>
+      <p class="sub">Tell your AI what you want to make. Here's how it goes.</p>
+      <div class="chat">
+        <div class="stage s1">1 · You first</div>
+        <div class="msg me">Use You-AI-You to write an email to a client. Their order is late.</div>
+        <div class="msg ai">Sure. A few questions first:<br>• What is late, and by how long?<br>• Why is it late?<br>• What can you offer them?</div>
+        <div class="msg me">200 chairs. One week late, now 5 Dec. Our supplier was late. We'll give 10% off.</div>
+
+        <div class="stage s2">2 · AI second</div>
+        <div class="msg ai">Here's a draft:<div class="draft">Dear <mark>[client name]</mark>,<br><br>I'm sorry. Your 200 chairs will arrive on 5 Dec, one week later than planned, because our supplier was late. To make up for it, we'll take 10% off your bill.<br><br>Thank you for your patience.</div><strong>Check:</strong> Is 5 Dec confirmed? What's the client's name?</div>
+
+        <div class="stage s3">3 · You last</div>
+        <div class="msg me">5 Dec is confirmed. Client is Ms Tan. Make it a bit warmer.</div>
+        <div class="msg ai">Done. I added her name and a warmer opening. Want any other changes, or is this final?</div>
+        <div class="msg me">Final. 👍</div>
       </div>
-      <p class="sub" style="margin-top:28px">Answer its questions with real facts. Check the draft. Change anything that isn't true or doesn't sound like you.</p>
+      <p class="sub" style="margin-top:24px">Notice: the AI asked before writing, didn't guess the client's name, and waited for your OK.</p>
     </div>
   </section>
 </main>
